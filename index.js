@@ -16,7 +16,7 @@ function findDenominations(denominations, i, currency) {
   };
   matchEuros[i] = {};
 
-  // Take the closest and lesser from the deniminations. If it exist increase the count.And returns as an object.
+  // Take the closest and lesser from the denominations. If it exist increase the count.And returns as an object.
   do {
     let closest = Math.max(...denominations.filter(num => num <= currency));
     if (matchEuros[i].hasOwnProperty(closest)) {
