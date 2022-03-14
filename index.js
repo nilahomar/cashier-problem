@@ -20,7 +20,7 @@ function findDenominations(denominations, i, currency) {
   do {
     let closest = Math.max(...denominations.filter(num => num <= currency));
     if (matchEuros[i].hasOwnProperty(closest)) {
-      matchEuros[i][closest] = matchEuros[i][closest] + 1
+      matchEuros[i][closest] = matchEuros[i][closest] + 1;
     } else {
       matchEuros[i][closest] = 1;
     }
@@ -43,7 +43,7 @@ function calcChange(totalPrice) {
     calcChange(totalPrice);
   } else if (customerCash === totalPrice) {
     console.log("No balance");
-    return
+    return;
   } else if (customerCash < totalPrice) {
     totalPrice = (totalPrice - customerCash).toFixed(2);
     console.log(`You have to pay ${totalPrice} more.`);
@@ -55,22 +55,23 @@ function calcChange(totalPrice) {
     for (let i = 0; i < 2; i++) {
       let currency = Number(totalPrice[i]);
       if (currency === 0) {
-        continue
+        continue;
       }
       // Gets the count of currency denomination that to be returned to the customer
       let matchEuros = findDenominations(denominations, i, currency);
 
-      for (const [key, value] of Object.entries(matchEuros[i])) {
-        console.log("-----------------------")
+      // print the Euros and Cents in words
+      for (const [key, value] in Object.entries(matchEuros[i])) {
+        console.log("-----------------------");
         if (i === 0) {
           let print = (key === "1" || key === "2") ? `${value} x ${toWords.convert(key)} euro coins` : `${value} x ${toWords.convert(key)} euro notes`;
-          console.log(print)
+          console.log(print);
         } else {
           console.log(`${value} x ${toWords.convert(key)} cent coins`);
         }
       }
     }
-    return
+    return;
   }
 }
 
